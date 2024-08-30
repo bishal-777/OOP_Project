@@ -59,7 +59,52 @@ void Student_Evaluation::calculate_Marks(){
     cout<<"The total internal marks is :"<<temp<<"Out of 100"<<endl;
 }
 
+
+class Student_Manage{
+    int Student_count;
+    Student_Evaluation all_s[100];     //HA-SA relationship
+    public:
+    Student_Manage(){
+        Student_count=0;
+    }
+    void Student_Add();
+    void Student_Display();
+    void Student_Edit();
+};
+void Student_Manage::Student_Add(){
+    Student_Evaluation new_s;
+    new_s.getdata_PersonalData();
+    new_s.getdata_Marks();
+}
+void Student_Manage::Student_Display(){
+
+}
+void Student_Manage::Student_Edit(){
+
+    }
 int main(){
+    Student_Manage s;
+    int  choice;
+    cout<<"\nWelcome to Student Management System\n";
+    cout<<"Press 1 to Add Student\n";
+    cout<<"Press 2 to Display All Students\n";
+    cout<<"Press 3 to Edit Student Details\n";
+    cin>>choice;
+    switch (choice)
+    {
+    case 1:
+        s.Student_Add();
+        break;
+
+    case 2:
+        s.Student_Display();
+        break;
+
+    case 3:
+        s.Student_Edit();
+        break;
     
+    default:
+    }
     return 0;
 }
