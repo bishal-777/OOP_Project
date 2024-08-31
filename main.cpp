@@ -5,6 +5,7 @@ using namespace std;
 class Student_PersonalData{
     protected:
     char name[100],faculty[20],phone_no[50],address[100],roll[50];       //roll no is also in char datatype since roll no will be 'ACE080BCT024'
+    float marks;
     public:
     void getdata_PersonalData();
     void showdata_PersonalData();
@@ -33,6 +34,7 @@ class Student_Evaluation:public Student_PersonalData{
     public:
     void getdata_Marks();
     void calculate_Marks();
+    void display_Marks();
 };
 /*Marks distribition is as follows:
 attendance=10%      -10 marks
@@ -54,11 +56,11 @@ void Student_Evaluation::getdata_Marks(){
     cin>>marks_assigment>>marks_project;
 }
 void Student_Evaluation::calculate_Marks(){
-    float temp;
-    temp=marks_assigment+marks_attendance+marks_first_assement+marks_second_assement+marks_lab_exam+marks_project+marks_viva;
-    cout<<"The total internal marks is :"<<temp<<"Out of 100"<<endl;
+    marks=marks_assigment+marks_attendance+marks_first_assement+marks_second_assement+marks_lab_exam+marks_project+marks_viva;
 }
-
+void Student_Evaluation::display_Marks(){
+        cout<<"The total internal marks is :"<<marks<<"Out of 100"<<endl;
+}
 
 class Student_Manage{
     int Student_count;
@@ -69,28 +71,42 @@ class Student_Manage{
     }
     void Student_Add();
     void Student_Display();
-    void Student_Edit();
+    void Student_Edit(int);
 };
 void Student_Manage::Student_Add(){
     Student_Evaluation new_s;
     new_s.getdata_PersonalData();
     new_s.getdata_Marks();
+    all_s[Student_count]=new_s;
+    Student_count++;
+    cout<<"Student added"<<endl;
 }
 void Student_Manage::Student_Display(){
-
-}
-void Student_Manage::Student_Edit(){
-
+     for(int i=0;i<Student_count;i++){
+        all_s[i].showdata_PersonalData();
+        all_s[i].display_Marks();
     }
+}
+void Student_Manage::Student_Edit(int r){
+    for(int i=0;i<Student_count;i++){
+        all_s[i].getdata_PersonalData();
+        all_s[i].getdata_Marks();
+        cout<<"Editied student data"<<endl;
+    }
+    }
+    
 int main(){
     Student_Manage s;
-    int  choice;
+    int  choice,r;
     cout<<"\nWelcome to Student Management System\n";
     cout<<"Press 1 to Add Student\n";
     cout<<"Press 2 to Display All Students\n";
     cout<<"Press 3 to Edit Student Details\n";
+    cout<<"Press 4 to Exit the application\n";
+
     cin>>choice;
-    switch (choice)
+    do{
+        switch (choice)
     {
     case 1:
         s.Student_Add();
@@ -101,10 +117,18 @@ int main(){
         break;
 
     case 3:
-        s.Student_Edit();
+        cout<<"Enter the roll no of student:"<<endl;
+        cin>>r;
+        s.Student_Edit(r);
         break;
     
+    case 4:
+        cout<<"Exiting the application"<<endl;
+        break;
+
     default:
+    cout<<"Invalid option!"<<endl;
     }
+    }while(choice!=5);
     return 0;
 }
