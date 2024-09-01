@@ -1,12 +1,13 @@
 #include<iostream>
-
+#include<string.h>
 using namespace std;
 
 class Student_PersonalData{
     protected:
-    char name[100],faculty[20],phone_no[50],address[100],roll[50];       //roll no is also in char datatype since roll no will be 'ACE080BCT024'
+    char name[100],faculty[20],phone_no[50],address[100]; 
     float marks;
     public:
+    int roll;
     void getdata_PersonalData();
     void showdata_PersonalData();
 };
@@ -49,7 +50,7 @@ void Student_Evaluation::getdata_Marks(){
     cout<<"Enter marks of first and second assesment:"<<endl;
     cin>>marks_first_assement>>marks_second_assement;
     cout<<"Enter marks of lab exam and viva:";
-    cin>>marks_lab_exam,marks_viva;
+    cin>>marks_lab_exam>>marks_viva;
     cout<<"Enter marks of attendance"<<endl;
     cin>>marks_attendance;
     cout<<"Enter marks of assignment and project:"<<endl;
@@ -89,23 +90,25 @@ void Student_Manage::Student_Display(){
 }
 void Student_Manage::Student_Edit(int r){
     for(int i=0;i<Student_count;i++){
+        if(all_s[i].roll==r){
         all_s[i].getdata_PersonalData();
         all_s[i].getdata_Marks();
         cout<<"Editied student data"<<endl;
+        }
     }
     }
     
 int main(){
     Student_Manage s;
     int  choice,r;
-    cout<<"\nWelcome to Student Management System\n";
+    do{
+            cout<<"\nWelcome to Student Management System\n";
     cout<<"Press 1 to Add Student\n";
     cout<<"Press 2 to Display All Students\n";
     cout<<"Press 3 to Edit Student Details\n";
     cout<<"Press 4 to Exit the application\n";
-
     cin>>choice;
-    do{
+
         switch (choice)
     {
     case 1:
@@ -129,6 +132,6 @@ int main(){
     default:
     cout<<"Invalid option!"<<endl;
     }
-    }while(choice!=5);
+    }while(choice!=4);
     return 0;
 }
