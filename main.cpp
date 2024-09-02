@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string.h>
+#include<iomanip>
 using namespace std;
 
 class Student_PersonalData{
@@ -47,14 +48,49 @@ lab exam=10%        -10 marks
 viva=10%            -10 marks
 */
 void Student_Evaluation::getdata_Marks(){
+    cout<<setw(20)<<endl;                                       //Tried to use setfill but didnt work
+    cout<<"Marks distribition is as follows"<<endl;
+    cout<<"attendance=10%      -10 marks"<<endl;
+    cout<<"first assesment=25% -25 marks"<<endl;
+    cout<<"second assement=25% -25 marks"<<endl;
+    cout<<"Assignment=10%      -10 marks"<<endl;
+    cout<<"project=10%         -10 marks"<<endl;
+    cout<<"lab exam=10%        -10 marks"<<endl;
+    cout<<"viva=10%            -10 marks"<<endl;
+    cout<<setw(20)<<endl;
+
     cout<<"Enter marks of first and second assesment:"<<endl;
     cin>>marks_first_assement>>marks_second_assement;
+    if(marks_first_assement && marks_second_assement >25){      //Tried to use do while but it gets tries to stuck in loop everytime
+        cout<<"Enter valid marks!"<<endl;
+        marks_first_assement=marks_second_assement=0;
+        cout<<"Enter marks of first and second assesment:"<<endl;
+        cin>>marks_first_assement>>marks_second_assement;
+    }
     cout<<"Enter marks of lab exam and viva:";
     cin>>marks_lab_exam>>marks_viva;
+    if(marks_lab_exam>10){
+        cout<<"Enter valid marks!"<<endl;
+        marks_lab_exam=0;
+        cout<<"Enter marks of lab exam and viva:";
+        cin>>marks_lab_exam>>marks_viva;
+    }
     cout<<"Enter marks of attendance"<<endl;
     cin>>marks_attendance;
+    if(marks_attendance>10){
+        cout<<"Enter valid marks!"<<endl;
+        marks_attendance=0;
+        cout<<"Enter marks of attendance"<<endl;
+        cin>>marks_attendance;
+    }
     cout<<"Enter marks of assignment and project:"<<endl;
     cin>>marks_assigment>>marks_project;
+    if(marks_assigment && marks_project >10){
+        cout<<"Enter valid marks!"<<endl;
+        marks_assigment=marks_project=0;
+        cout<<"Enter marks of assignment and project:"<<endl;
+        cin>>marks_assigment>>marks_project;
+    }
 }
 void Student_Evaluation::calculate_Marks(){
     marks=marks_assigment+marks_attendance+marks_first_assement+marks_second_assement+marks_lab_exam+marks_project+marks_viva;
