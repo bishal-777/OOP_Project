@@ -60,7 +60,7 @@ void Student_Evaluation::calculate_Marks(){
     marks=marks_assigment+marks_attendance+marks_first_assement+marks_second_assement+marks_lab_exam+marks_project+marks_viva;
 }
 void Student_Evaluation::display_Marks(){
-        cout<<"The total internal marks is :"<<marks<<"Out of 100"<<endl;
+        cout<<"The total internal marks is : "<<marks<<" Out of 100"<<endl;
 }
 
 class Student_Manage{
@@ -93,6 +93,7 @@ void Student_Manage::Student_Edit(int r){
         if(all_s[i].roll==r){
         all_s[i].getdata_PersonalData();
         all_s[i].getdata_Marks();
+        all_s[i].calculate_Marks();
         cout<<"Editied student data"<<endl;
         }
     }
@@ -102,14 +103,14 @@ int main(){
     Student_Manage s;
     int  choice,r;
     do{
-            cout<<"\nWelcome to Student Management System\n";
+    cout<<"\nWelcome to Student Management System\n";
     cout<<"Press 1 to Add Student\n";
     cout<<"Press 2 to Display All Students\n";
     cout<<"Press 3 to Edit Student Details\n";
     cout<<"Press 4 to Exit the application\n";
     cin>>choice;
 
-        switch (choice)
+    switch (choice)
     {
     case 1:
         s.Student_Add();
