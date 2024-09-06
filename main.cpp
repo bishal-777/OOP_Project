@@ -114,6 +114,7 @@ void Student_Manage::Student_Add(){
     Student_Evaluation new_s;
     new_s.getdata_PersonalData();
     new_s.getdata_Marks();
+    new_s.calculate_Marks();
     all_s[Student_count]=new_s;
     Student_count++;
     cout<<"Student added"<<endl;
